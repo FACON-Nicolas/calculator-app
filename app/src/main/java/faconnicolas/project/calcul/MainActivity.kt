@@ -82,6 +82,9 @@ class MainActivity : AppCompatActivity() {
         divide?.setOnClickListener { view -> calculator.setOp('/') }
         plus?.setOnClickListener { view -> calculator.setOp('+') }
         minus?.setOnClickListener { view -> calculator.setOp('-') }
-        equal?.setOnClickListener { view -> calculator.compute(text?.text.toString().toInt()) }
+        equal?.setOnClickListener { view -> calculator.compute(text?.text.toString().toDouble()) }
+        virgule?.setOnClickListener { view -> calculator.addDot() }
+        revert?.setOnClickListener { view -> calculator.revert() }
+        percent?.setOnClickListener { view -> calculator.percent() }
     }
 }
