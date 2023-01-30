@@ -29,19 +29,17 @@ class MainActivity : AppCompatActivity() {
 
     private var text: TextView? = null;
 
-    private var op: Char = ' '
-    private var number: Int = 0
-
-    private var calculator: Calculator = Calculator()
+    private lateinit var calculator: Calculator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_main)
         initView()
+        assignBehavior()
     }
 
-    public fun initView() {
+    private fun initView() {
         ac = findViewById(R.id.AC)
         zero = findViewById(R.id.zero)
         one = findViewById(R.id.one)
@@ -64,19 +62,21 @@ class MainActivity : AppCompatActivity() {
         ac = findViewById(R.id.AC)
 
         text = findViewById(R.id.text)
+        calculator = Calculator(text)
+
     }
 
-    public fun assignBehavior() {
-        ac.let { calculator.reset() }
-        zero.let { calculator.addDigit(text, 0) }
-        one.let { calculator.addDigit(text, 1) }
-        two.let { calculator.addDigit(text, 2) }
-        three.let { calculator.addDigit(text, 3) }
-        four.let { calculator.addDigit(text, 4) }
-        five.let { calculator.addDigit(text, 5) }
-        six.let { calculator.addDigit(text, 6) }
-        seven.let { calculator.addDigit(text, 7) }
-        eight.let { calculator.addDigit(text, 8) }
-        nine.let { calculator.addDigit(text, 9) }
+    private fun assignBehavior() {
+        ac?.setOnClickListener() { view -> calculator.reset() }
+        zero?.setOnClickListener() { view -> calculator.addDigit(0) }
+        one?.setOnClickListener() { view -> calculator.addDigit(1) }
+        two?.setOnClickListener() { view -> calculator.addDigit(2) }
+        three?.setOnClickListener() { view -> calculator.addDigit(3) }
+        four?.setOnClickListener() { view -> calculator.addDigit(4) }
+        five?.setOnClickListener() { view -> calculator.addDigit(5) }
+        six?.setOnClickListener() { view -> calculator.addDigit(6) }
+        seven?.setOnClickListener() { view -> calculator.addDigit(7) }
+        eight?.setOnClickListener() { view -> calculator.addDigit(8) }
+        nine?.setOnClickListener() { view -> calculator.addDigit(9) }
     }
 }
