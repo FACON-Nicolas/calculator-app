@@ -26,4 +26,30 @@ class Calculator(text: TextView?) {
         text.text = ""
     }
 
+    fun setOp(op: Char) {
+        if (this.op != ' ' && text.text != "") {
+            compute(text.text.toString().toInt())
+        }
+        this.op = op
+        if (text.text != "") number = text.text.toString().toInt()
+        text.text = ""
+    }
+
+    fun compute(num: Int) {
+        var value = 0
+        try {
+            value = when (op) {
+                '+' -> number + num
+                '-' -> number - num
+                '/' -> number / num
+                '*' -> number * num
+                else -> 0
+            }
+            text.text = value.toString()
+            op = ' '
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 }
