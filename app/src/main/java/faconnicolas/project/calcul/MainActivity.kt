@@ -67,16 +67,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun assignBehavior() {
-        ac?.setOnClickListener() { view -> calculator.reset() }
-        zero?.setOnClickListener() { view -> calculator.addDigit(0) }
-        one?.setOnClickListener() { view -> calculator.addDigit(1) }
-        two?.setOnClickListener() { view -> calculator.addDigit(2) }
-        three?.setOnClickListener() { view -> calculator.addDigit(3) }
-        four?.setOnClickListener() { view -> calculator.addDigit(4) }
-        five?.setOnClickListener() { view -> calculator.addDigit(5) }
-        six?.setOnClickListener() { view -> calculator.addDigit(6) }
-        seven?.setOnClickListener() { view -> calculator.addDigit(7) }
-        eight?.setOnClickListener() { view -> calculator.addDigit(8) }
-        nine?.setOnClickListener() { view -> calculator.addDigit(9) }
+        ac?.setOnClickListener { view -> calculator.reset() }
+        zero?.setOnClickListener { view -> calculator.addDigit(0) }
+        one?.setOnClickListener { view -> calculator.addDigit(1) }
+        two?.setOnClickListener { view -> calculator.addDigit(2) }
+        three?.setOnClickListener { view -> calculator.addDigit(3) }
+        four?.setOnClickListener { view -> calculator.addDigit(4) }
+        five?.setOnClickListener { view -> calculator.addDigit(5) }
+        six?.setOnClickListener { view -> calculator.addDigit(6) }
+        seven?.setOnClickListener { view -> calculator.addDigit(7) }
+        eight?.setOnClickListener { view -> calculator.addDigit(8) }
+        nine?.setOnClickListener { view -> calculator.addDigit(9) }
+        multiply?.setOnClickListener { view -> calculator.setOp('*') }
+        divide?.setOnClickListener { view -> calculator.setOp('/') }
+        plus?.setOnClickListener { view -> calculator.setOp('+') }
+        minus?.setOnClickListener { view -> calculator.setOp('-') }
+        equal?.setOnClickListener { view -> calculator.compute(text?.text.toString().toInt()) }
     }
 }
