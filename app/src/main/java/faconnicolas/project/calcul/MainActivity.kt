@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
     private var op: Char = ' '
     private var number: Int = 0
 
+    private var calculator: Calculator = Calculator()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -65,16 +67,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     public fun assignBehavior() {
-
+        ac.let { calculator.reset() }
+        zero.let { calculator.addDigit(text, 0) }
+        one.let { calculator.addDigit(text, 1) }
+        two.let { calculator.addDigit(text, 2) }
+        three.let { calculator.addDigit(text, 3) }
+        four.let { calculator.addDigit(text, 4) }
+        five.let { calculator.addDigit(text, 5) }
+        six.let { calculator.addDigit(text, 6) }
+        seven.let { calculator.addDigit(text, 7) }
+        eight.let { calculator.addDigit(text, 8) }
+        nine.let { calculator.addDigit(text, 9) }
     }
-
-    public fun addDigit(digit: Int) {
-        text?.text = digit.toString() + text?.text
-    }
-
-    public fun chooseOperator(myOperator: Char) {
-
-    }
-
-
 }
