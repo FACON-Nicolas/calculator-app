@@ -3,22 +3,27 @@ package faconnicolas.project.calcul
 import android.annotation.SuppressLint
 import android.widget.TextView
 
-class Calculator {
+class Calculator(text: TextView?) {
 
-    var number: Int = 0
+    private var number: Int = 0
+    private lateinit var text: TextView;
+    private var op: Char = ' '
 
-    var op: Char = ' '
-
-    @SuppressLint("SetTextI18n")
-    public fun addDigit(text: TextView?, digit: Int) {
+    init {
         text?.let {
-            text.text = text.text.toString() + digit.toString()
+            this.text = text
         }
     }
 
-    public fun reset() {
+    @SuppressLint("SetTextI18n")
+    fun addDigit(digit: Int) {
+        text.text = text.text.toString() + digit.toString()
+    }
+
+    fun reset() {
         op = ' '
         number = 0
+        text.text = ""
     }
 
 }
