@@ -1,5 +1,6 @@
 package faconnicolas.project.calcul
 
+import android.annotation.SuppressLint
 import android.widget.TextView
 
 class Calculator {
@@ -8,8 +9,11 @@ class Calculator {
 
     var op: Char = ' '
 
+    @SuppressLint("SetTextI18n")
     public fun addDigit(text: TextView?, digit: Int) {
-        text?.text = digit.toString() + text?.text
+        text?.let {
+            text.text = text.text.toString() + digit.toString()
+        }
     }
 
     public fun reset() {
