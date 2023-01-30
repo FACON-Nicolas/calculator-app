@@ -37,19 +37,21 @@ class Calculator(text: TextView?) {
 
     fun compute(num: Int) {
         var value = 0
-        try {
             value = when (op) {
                 '+' -> number + num
                 '-' -> number - num
-                '/' -> number / num
+                '/' -> {
+                    try {
+                        number / num
+                    } catch (e: Exception) {
+                        0
+                    }
+                }
                 '*' -> number * num
                 else -> 0
             }
             text.text = value.toString()
             op = ' '
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 
 }
