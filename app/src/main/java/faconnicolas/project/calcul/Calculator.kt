@@ -1,11 +1,12 @@
 package faconnicolas.project.calcul
 
 import android.annotation.SuppressLint
+import android.text.TextUtils.substring
 import android.widget.TextView
 
 class Calculator(text: TextView?) {
 
-    private var number: Int = 0
+    private var number: Double = 0.0
     private lateinit var text: TextView;
     private var op: Char = ' '
 
@@ -22,21 +23,21 @@ class Calculator(text: TextView?) {
 
     fun reset() {
         op = ' '
-        number = 0
+        number = 0.0
         text.text = ""
     }
 
     fun setOp(op: Char) {
         if (this.op != ' ' && text.text != "") {
-            compute(text.text.toString().toInt())
+            compute(text.text.toString().toDouble())
         }
         this.op = op
-        if (text.text != "") number = text.text.toString().toInt()
+        if (text.text != "") number = text.text.toString().toDouble()
         text.text = ""
     }
 
-    fun compute(num: Int) {
-        var value = 0
+    fun compute(num: Double) {
+        var value = 0.0
             value = when (op) {
                 '+' -> number + num
                 '-' -> number - num
@@ -44,14 +45,34 @@ class Calculator(text: TextView?) {
                     try {
                         number / num
                     } catch (e: Exception) {
-                        0
+                        0.0
                     }
                 }
                 '*' -> number * num
-                else -> 0
+                else -> text.text.toString().toDouble()
             }
             text.text = value.toString()
             op = ' '
+            number = value
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun addDot() {
+        if (text.text.toString().contains('.')) return
+        text.text = text.text.toString() + "."
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun revert() {
+        if (text.text.toString()[0] == '-') {
+            text.text = substring(text.text.toString(), 1, text.text.length)
+        } else text.text = '-' + text.text.toString()
+    }
+
+    fun percent() {
+        if (number == 0.0 && text.text.isNotEmpty()) number = text.text.toString().toDouble()
+        number /= 100
+        text.text = number.toString()
     }
 
 }
